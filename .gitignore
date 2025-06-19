@@ -1,0 +1,44 @@
+# Data and Output
+output/
+datasets/
+test_output/
+*.csv
+*.xlsx
+*.pkl
+
+# Generated Files
+*.png
+*.jpg
+*.pdf
+*.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv
+pip-log.txt
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*_temp.py
+*_backup.py
+temp_*
+debug_*
+test_*
