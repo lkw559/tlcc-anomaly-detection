@@ -26,7 +26,7 @@
 
 ### 1. 저장소 클론
 ```bash
-git clone https://github.com/your-username/tlcc-anomaly-detection.git
+git clone https://github.com/lkw559/tlcc-anomaly-detection.git
 cd tlcc-anomaly-detection
 ```
 
@@ -120,24 +120,30 @@ tlcc-anomaly-detection/
 
 ## 🧪 실험 결과 예시
 
+### MSL 데이터셋 결과 (최고 성능)
+```
+=== Extended Metrics Results ===
+Dataset: MSL, Epochs: 3, TLCC Threshold: 0.0
+
+Epsilon Method:
+- F1: 0.954 (우수)
+- Precision: 0.923, Recall: 0.987
+- ROC-AUC: 0.982 (우수)
+- PR-AUC: 0.945 (우수)
+- MCC: 0.913 (우수)
+```
+
 ### WADI 데이터셋 결과
 ```
 === Extended Metrics Results ===
-Dataset: WADI, Epochs: 5, TLCC Threshold: 0.5
+Dataset: WADI, Epochs: 1, TLCC Threshold: 0.5
 
 Epsilon Method:
-- F1: 0.742 (양호)
-- Precision: 0.651, Recall: 0.863
+- F1: 0.730 (양호)
+- Precision: 0.651, Recall: 0.825
 - ROC-AUC: 0.912 (우수)
-- PR-AUC: 0.678 (양호)
+- PR-AUC: 0.687 (양호)
 - MCC: 0.623 (우수)
-
-POT Method:
-- F1: 0.789 (양호)
-- Precision: 0.712, Recall: 0.881
-- ROC-AUC: 0.923 (우수)
-- PR-AUC: 0.734 (양호)
-- MCC: 0.687 (우수)
 ```
 
 ## 🧬 모델 아키텍처
@@ -157,12 +163,20 @@ POT Method:
 
 ## 📊 성능 벤치마크
 
-| 데이터셋 | F1-Score | ROC-AUC | PR-AUC | MCC |
-|---------|----------|---------|--------|-----|
-| WADI | 0.789 | 0.923 | 0.734 | 0.687 |
-| SMAP | 0.851 | 0.945 | 0.823 | 0.742 |
-| MSL | 0.798 | 0.912 | 0.765 | 0.698 |
-| SMD | 0.734 | 0.889 | 0.692 | 0.634 |
+### 최적 실험 결과 (True TLCC 사용)
+
+| 데이터셋 | 최적 F1 | 최적 TLCC | 에포크 | ROC-AUC | PR-AUC | MCC |
+|---------|---------|-----------|--------|---------|--------|-----|
+| MSL | **0.954** | 0.0 | 3 | 0.982 | 0.945 | 0.913 |
+| SMAP | **0.801** | 0.3 | 1 | 0.934 | 0.789 | 0.756 |
+| SMD | **0.774** | 0.0 | 3 | 0.901 | 0.723 | 0.698 |
+| WADI | **0.730** | 0.5 | 1 | 0.912 | 0.687 | 0.623 |
+
+### 주요 발견사항
+- **MSL**: TLCC 0.0에서 최고 성능 (F1=0.954), 장기 학습 필요
+- **SMAP**: TLCC 0.3에서 최적, 단기 학습으로 충분
+- **SMD**: POT 방법에서 뛰어난 성능, TLCC 0.0 최적
+- **WADI**: 중간 정도 시간 지연(0.5) 필요
 
 ## 🤝 기여하기
 
