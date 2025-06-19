@@ -126,11 +126,37 @@ tlcc-anomaly-detection/
 Dataset: MSL, Epochs: 3, TLCC Threshold: 0.0
 
 Epsilon Method:
-- F1: 0.954 (우수)
-- Precision: 0.923, Recall: 0.987
-- ROC-AUC: 0.982 (우수)
-- PR-AUC: 0.945 (우수)
-- MCC: 0.913 (우수)
+- F1: 0.9544 (우수)
+- Precision: 0.9419, Recall: 0.9673
+- ROC-AUC: 0.6583 (보통)
+- PR-AUC: 0.1981 (낮음)
+- MCC: 0.9491 (우수)
+```
+
+### SMAP 데이터셋 결과
+```
+=== Extended Metrics Results ===
+Dataset: SMAP, Epochs: 1, TLCC Threshold: 0.3
+
+Epsilon Method:
+- F1: 0.8006 (우수)
+- Precision: 0.9905, Recall: 0.6717
+- ROC-AUC: 0.5983 (보통)
+- PR-AUC: 0.1555 (낮음)
+- MCC: 0.7960 (우수)
+```
+
+### SMD 데이터셋 결과
+```
+=== Extended Metrics Results ===
+Dataset: SMD, Epochs: 3, TLCC Threshold: 0.0
+
+POT Method:
+- F1: 0.7741 (양호)
+- Precision: 0.6315, Recall: 1.0000
+- ROC-AUC: 0.8523 (우수)
+- PR-AUC: 0.4189 (보통)
+- MCC: 0.7700 (우수)
 ```
 
 ### WADI 데이터셋 결과
@@ -139,11 +165,11 @@ Epsilon Method:
 Dataset: WADI, Epochs: 1, TLCC Threshold: 0.5
 
 Epsilon Method:
-- F1: 0.730 (양호)
-- Precision: 0.651, Recall: 0.825
-- ROC-AUC: 0.912 (우수)
-- PR-AUC: 0.687 (양호)
-- MCC: 0.623 (우수)
+- F1: 0.7299 (양호)
+- Precision: 0.5844, Recall: 0.9720
+- ROC-AUC: 0.8319 (우수)
+- PR-AUC: 0.2401 (낮음)
+- MCC: 0.7349 (우수)
 ```
 
 ## 🧬 모델 아키텍처
@@ -165,18 +191,18 @@ Epsilon Method:
 
 ### 최적 실험 결과 (True TLCC 사용)
 
-| 데이터셋 | 최적 F1 | 최적 TLCC | 에포크 | ROC-AUC | PR-AUC | MCC |
-|---------|---------|-----------|--------|---------|--------|-----|
-| MSL | **0.954** | 0.0 | 3 | 0.982 | 0.945 | 0.913 |
-| SMAP | **0.801** | 0.3 | 1 | 0.934 | 0.789 | 0.756 |
-| SMD | **0.774** | 0.0 | 3 | 0.901 | 0.723 | 0.698 |
-| WADI | **0.730** | 0.5 | 1 | 0.912 | 0.687 | 0.623 |
+| 데이터셋 | F1 Score | 최적 TLCC | 에포크 | ROC-AUC | PR-AUC | MCC |
+|---------|----------|-----------|--------|---------|--------|-----|
+| **MSL** | **0.9544** | 0.0 | 3 | 0.6583 | 0.1981 | 0.9491 |
+| **SMAP** | **0.8006** | 0.3 | 1 | 0.5983 | 0.1555 | 0.7960 |
+| **SMD** | **0.7741** | 0.0 | 3 | 0.8523 | 0.4189 | 0.7700 |
+| **WADI** | **0.7299** | 0.5 | 1 | 0.8319 | 0.2401 | 0.7349 |
 
 ### 주요 발견사항
-- **MSL**: TLCC 0.0에서 최고 성능 (F1=0.954), 장기 학습 필요
-- **SMAP**: TLCC 0.3에서 최적, 단기 학습으로 충분
-- **SMD**: POT 방법에서 뛰어난 성능, TLCC 0.0 최적
-- **WADI**: 중간 정도 시간 지연(0.5) 필요
+- **MSL**: TLCC 0.0에서 최고 성능 (F1=0.9544), 3 에포크 학습 필요
+- **SMAP**: TLCC 0.3에서 최적 (F1=0.8006), 1 에포크로 충분  
+- **SMD**: TLCC 0.0에서 최적 (F1=0.7741), POT 방법 사용
+- **WADI**: 중간 정도 시간 지연 (TLCC 0.5) 필요, Epsilon 방법 사용
 
 ## 🤝 기여하기
 
