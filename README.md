@@ -9,9 +9,11 @@
 
 - **확장된 평가 지표**: ROC-AUC, PR-AUC, MCC 포함한 종합적인 성능 평가
 - **TLCC 기반 상관관계 분석**: 시간 지연 교차 상관관계를 활용한 특성 선택
+- **진짜 TLCC 구현**: `true_tlcc_implementation.py`로 정확한 시간 지연 상관관계 계산
 - **다중 데이터셋 지원**: WADI, SMAP, MSL, SMD 데이터셋 지원
 - **포괄적 실험 프레임워크**: 자동화된 실험 실행 및 결과 분석
 - **시각화 및 분석 도구**: 실험 결과 시각화 및 통계 분석
+- **연구윤리 준수**: Cross-validation 기반 임계값 선택으로 data snooping 방지
 
 ## 📊 지원 데이터셋
 
@@ -185,7 +187,26 @@ Epsilon Method:
 
 ### TLCC 기반 특성 선택
 
-시간 지연 교차 상관관계(TLCC)를 사용하여 중요한 특성을 선택합니다.
+**Time-Lagged Cross-Correlation (TLCC)**을 사용하여 중요한 특성을 선택합니다.
+
+#### 핵심 구현: `src/utils/true_tlcc_implementation.py`
+
+```python
+def true_time_lagged_cross_correlation(x, y, max_lag=10):
+    """
+    진짜 Time-Lagged Cross-Correlation 계산
+    
+    시간 지연된 상관관계를 정확하게 측정하여:
+    - 양의 lag: x가 y보다 뒤처짐 (y가 x를 예측)
+    - 음의 lag: x가 y보다 앞섬 (x가 y를 예측)
+    - 최적 lag와 최대 상관계수 반환
+    """
+```
+
+#### TLCC의 장점:
+- ✅ **시간적 인과성 탐지**: 단순 상관관계를 넘어 시간 지연 효과 포착
+- ✅ **효율적 계산**: 캐싱 시스템으로 재계산 방지
+- ✅ **정확한 모델링**: 실제 시스템의 시간 지연 특성 반영
 
 ## 📊 성능 벤치마크
 
