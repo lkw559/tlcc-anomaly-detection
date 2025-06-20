@@ -176,14 +176,12 @@ Epsilon Method:
 
 ## 🧬 모델 아키텍처
 
-이 프로젝트는 MTAD-GAT를 기반으로 한 다음 구조를 사용합니다:
+이 프로젝트는 MTAD-GAT를 기반으로 하였으며, 다음 구조를 사용합니다:
 
 1. **1D Convolution Layer**: 시간 차원에서 데이터 스무딩
-2. **Dual GAT Layers**: 
-   - Feature-oriented GAT: 특성 간 의존성 캡처
-   - Time-oriented GAT: 시간 단계 간 의존성 캡처
+2. **TLCC Extraction & Adjacency Matrix Layer**: TLCC를 산출하여 인접행렬 생성
 3. **GRU Layer**: 장기 순차 패턴 학습
-4. **Dual Output**: 예측 및 재구성 모델
+4. **Dual Output**: 예측 모델
 
 ### TLCC 기반 특성 선택
 
