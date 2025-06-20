@@ -115,7 +115,12 @@ if __name__ == "__main__":
     
     if use_true_tlcc:
         print("🔥 Using TRUE Time-Lagged Cross-Correlation (TLCC)")
-        from true_tlcc_implementation import columns_by_max_cross_correlation_tlcc
+        import sys
+        import os
+        # Add parent directory (project root) to path to access src module
+        parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        sys.path.insert(0, parent_dir)
+        from src.utils.true_tlcc_implementation import columns_by_max_cross_correlation_tlcc
         
         # 데이터셋별 캐싱을 위한 파라미터 전달
         corr_adj_df = columns_by_max_cross_correlation_tlcc(
